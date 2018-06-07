@@ -4,7 +4,7 @@ package com.makersacademy.acebook;
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.PostRepository;
-import com.makersacademy.acebook.repository.UsersRepository;
+import com.makersacademy.acebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,20 +13,22 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements CommandLineRunner {
 
   private final PostRepository repository;
-  private final UsersRepository usersRepository;
+  private final UserRepository userRepository;
 
   @Autowired
-  public DatabaseLoader(PostRepository repository, UsersRepository usersRepository) {
+  public DatabaseLoader(PostRepository repository, UserRepository userRepository) {
   	this.repository = repository;
-  	this.usersRepository = usersRepository;
+    this.userRepository = userRepository;
 
   }
 
+
   @Override
   public void run(String... strings) throws Exception {
+    this.userRepository.save(new User("Igor", "Ryabchuk"));
   	this.repository.save(new Post("Hey, folks! Welcome to Acebook!"));
     this.repository.save(new Post("Keep up the great work! :)"));
-    this.usersRepository.save(new User("Igor", "Ryabchuk"));
+
   }
 
 

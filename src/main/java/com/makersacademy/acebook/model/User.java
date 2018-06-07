@@ -1,10 +1,11 @@
 package com.makersacademy.acebook.model;
 
+
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Data;
 
 @Data
 @Entity
@@ -20,5 +21,4 @@ public class User {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-
 }
