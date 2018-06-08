@@ -2,7 +2,7 @@ package com.makersacademy.acebook;
 
 
 import com.makersacademy.acebook.model.Post;
-import com.makersacademy.acebook.model.Users;
+import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class DatabaseLoader implements CommandLineRunner {
   @Override
   public void run(String... strings) throws Exception {
     this.repository.save(new Post("blah blah"));
-    this.userRepository.save(new Users("Igor", "Ryabchuk"));
+    this.userRepository.save(new User("Igor", "Ryabchuk"));
 
   }
 }

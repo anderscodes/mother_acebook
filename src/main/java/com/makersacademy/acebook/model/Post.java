@@ -9,7 +9,7 @@ import lombok.Data;
 @Table(name = "POSTS")
 public class Post {
 
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
     @Column(name = "content")
     private String content;
@@ -18,11 +18,6 @@ public class Post {
 
     public Post(String content) {
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Content is %s", content);
     }
 
 }

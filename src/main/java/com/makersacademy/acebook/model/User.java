@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "USERS")
-public class Users {
-  private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+public class User {
+  private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
   @Column(name = "firstName")
   private String firstName;
@@ -17,9 +17,9 @@ public class Users {
   @Column(name = "lastName")
   private String lastName;
 
-  private Users() {};
+  private User() {};
 
-  public Users(String firstName, String lastName) {
+  public User(String firstName, String lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
   }
