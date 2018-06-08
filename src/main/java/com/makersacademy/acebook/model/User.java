@@ -19,7 +19,7 @@ public class User {
   @Column(name = "lastName")
   private String lastName;
 
-  private User() {};
+  public User() {};
 
   public User(String firstName, String lastName) {
     this.firstName = firstName;
@@ -41,6 +41,14 @@ public class User {
 
   public String getLastName() {
     return lastName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public  void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
 }
