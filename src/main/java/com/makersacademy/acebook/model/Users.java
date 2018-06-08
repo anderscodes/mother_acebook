@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USERS")
 public class Users {
-  private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id2;
+  private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
 
   @Column(name = "firstName")
   private String firstName;
