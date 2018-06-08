@@ -9,7 +9,8 @@ class PostsBuilder extends React.Component {
   }
 
   componentDidMount() {
-    client({method: 'GET', path: '/api/posts'}).then(response => {
+      console.log('running here')
+      client({method: 'GET', path: '/api/posts'}).then(response => {
       this.setState({posts: response.entity._embedded.posts});
     });
   }
