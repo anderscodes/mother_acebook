@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "npm run webpack",
-    "webpack": "webpack -d --watch"
+    "webpack": "webpack -d --watch",
+    "test": "jest"
   },
   "author": "dearshrewdwit",
   "license": "ISC"
