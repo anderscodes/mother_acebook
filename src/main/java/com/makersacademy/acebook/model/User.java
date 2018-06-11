@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-class User {
+public class User {
 
     private @Id @GeneratedValue Long id;
     private String username;
