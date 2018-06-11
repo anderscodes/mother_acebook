@@ -1,53 +1,57 @@
-'use strict';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const React = require('react');
-const ReactDOM = require('react-dom')
-const client = require('../client');
-
-class CreateDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        var newPost = {};
-        this.props.attributes.forEach(attribute => {
-            newPost[attribute] = ReactDOM.findDOMNode(this.refs[attribute]).value.trim();
-        });
-        this.props.onCreate(newPost);
-
-        this.props.attributes.forEach(attribute => {
-            ReactDOM.findDOMNode(this.refs[attribute]).value = '';
-        });
-
-        window.location = "#";
-    }
-    render() {
-      var inputs = this.props.attributes.map(attribute =>
-          <p key={attribute}>
-              <input type="text" placeholder={attribute} ref={attribute} className="field" />
-          </p>
-      );
-      return (
-          <div>
-              <a href="#createPost">Create Post</a>
-              <div id="createPost" className="modalDialog">
-                  <div>
-                      <a href="#" title="Close" className="close">X</a>
-                      <h2>Create New Post</h2>
-                      <form>
-                          {inputs}
-                          <button onClick={this.handleSubmit}>Create</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      )
-    }
-
+var panelStyle = {
+    'max-width': '80%',
+    margin: '0 auto'
 }
 
-export default CreateDialog;
+class CreateDialog extends Component {
+    constructor() {
+        super();
 
+        this.state = {
+            formFields: {content: ''}
+        }
+    }
+
+    render() {
+        return(
+            <div>
+                <div class="panel panel-primary" style={panelStyle}>
+                    <div class="panel panel-heading">Submit Post</div>
+                    <div class="panel panel-body">
+                        <form onSubmit={this.formHandler(this.state.formFields)}>
+                            <strong>Content:</strong> <br />
+                            <input type="textarea" name="content" placeholder="Put some text here" onChangeCapture={(e) => this.inputChangeHandler.call(this, e)} value={this.state.formFields.content} /> <br />
+                            <button class="btn btn-primary">Submit Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        );
+    }
+
+    inputChangeHandler(e) {
+        let formFields = this.state.formFields;
+        formFields[e.target.name] = e.target.value;
+        this.setState({
+            formFields
+        });
+    }
+
+    formHandler(formFields) {
+        axios.post('/api/posts', formFields)
+            .then(function(response){
+                console.log(response);
+                //Perform action based on response
+            })
+            .catch(function(error){
+                console.log(error);
+                //Perform action based on error
+            });
+    }
+}
+
+export default CreateDialog
