@@ -1,4 +1,4 @@
-import CommonView from "./commonView";
+import CommonView from "./common/commonView";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
