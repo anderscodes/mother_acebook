@@ -1,13 +1,25 @@
+import PostsBuilder from "./posts/postsBuilder";
+import CreateDialog from "./create/createDialog";
+
 const React = require('react');
 const ReactDOM = require('react-dom');
-import CommonView from "./common/commonView";
+
+
 
 
 class App extends React.Component {
 
   render() {
     return (
-      <CommonView />
+        <div>
+            <div>
+                <PostsBuilder />
+            </div>
+            <div>
+                <CreateDialog />
+            </div>
+
+        </div>
     )
   }
 }

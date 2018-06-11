@@ -24,12 +24,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
   @Override
   public void run(String... strings) throws Exception {
-    User user = new User("Don", "Nod");
-    this.userRepository.save(user);
-    Post post = new Post("this is not working");
-    post.getUser();
-    post.setUser(user);
-    this.repository.save(post);
+
 
   }
 }
