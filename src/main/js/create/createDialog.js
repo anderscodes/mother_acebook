@@ -28,7 +28,10 @@ class CreateDialog extends React.Component {
             path: '/api/posts',
             entity: newPost,
             headers: {'Content-Type': 'application/json'}
-        }).done(response => {console.log(response)})
+        }).done(); console.log("Hi")
+        //     .then(response => {client({method: 'GET', path: '/api/posts'}).then(response => {
+        //     this.setState({posts: response.entity._embedded.posts});
+        // })})
     }
 
     render() {
