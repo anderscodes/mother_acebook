@@ -1,14 +1,13 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-import PostsBuilder from './posts/postsBuilder'
-import CreateDialog from  './posts/CreateDialog'
+import CommonView from  './common/commonView';
 
 class App extends React.Component {
 
   render() {
     return (
-      <CreateDialog/>
+      <CommonView/>
     )
   }
 }
