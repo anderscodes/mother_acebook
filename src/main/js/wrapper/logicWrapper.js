@@ -1,8 +1,8 @@
 import React from 'react';
 import Posts from '../posts/posts';
 const client = require('../client');
-import PostsBuilder from './posts/postsBuilder';
-import CreateDialog from  './posts/createPost';
+import PostsBuilder from '../posts/postsBuilder';
+import CreatePost from  '../posts/createPost';
 
 class LogicWrapper extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class LogicWrapper extends React.Component {
         <CreatePost />
       </div>
       <div>
-        <PostBuilder />
+        <PostsBuilder />
       </div>
     </div>
 
