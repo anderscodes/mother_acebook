@@ -28,12 +28,11 @@ class LogicWrapper extends React.Component {
   }
 
   onCreate(newPost) {
-    client({method: 'POST',
+    (client({method: 'POST',
       path: '/api/posts',
       entity: newPost,
       headers: {'Content-Type': 'application/json'}
-    }).then(response=> {this.setState({posts: response.entity._embedded.posts})
-    })
+    })).then(_ => {this.componentDidMount()})
   }
 
     componentDidMount() {
