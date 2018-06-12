@@ -3,7 +3,7 @@ import Posts from '../posts/posts';
 import { render } from "react-testing-library";
 import "dom-testing-library/extend-expect";
 
-describe('Display posts', funtion (){
+describe('Display posts', function () {
     const {getByTestId} = render(
         <Posts />
     );
