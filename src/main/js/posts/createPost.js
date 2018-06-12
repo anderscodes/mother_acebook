@@ -16,11 +16,10 @@ class CreatePost extends React.Component {
     }
 
     handleSubmit(event) {
-        // event.preventDefault();
+        event.preventDefault();
         var newPost = {}
         newPost["content"] = this.state.value
         this.onCreate(newPost)
-        window.location = "#"
 
     }
 
