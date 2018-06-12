@@ -1,7 +1,6 @@
 import React from 'react';
 import Posts from '../posts/posts';
 const client = require('../client');
-import PostsBuilder from '../posts/postsBuilder';
 import CreatePost from  '../posts/createPost';
 
 class LogicWrapper extends React.Component {
@@ -10,6 +9,12 @@ class LogicWrapper extends React.Component {
     this.state = {posts: []};
   }
 
+    componentDidMount() {
+      client({method: 'GET', path: '/api/posts'}).then(response => {
+        this.setState({posts: response.entity._embedded.posts});
+      });
+    }
+
   render() {
     return (
     <div>
@@ -17,7 +22,7 @@ class LogicWrapper extends React.Component {
         <CreatePost />
       </div>
       <div>
-        <PostsBuilder />
+        <Posts posts={this.state.posts}/>
       </div>
     </div>
 
