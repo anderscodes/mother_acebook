@@ -2,17 +2,25 @@ import React from 'react';
 import Posts from '../posts/posts';
 const client = require('../client');
 import CreatePost from  '../posts/createPost';
+import CreateUser from '../users/createUser';
 
 class LogicWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      value: ''
+      value: '',
+      user: {
+        firstName: '',
+        lastName: ''
+      }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onCreate = this.onCreate.bind(this)
+    this.onCreate = this.onCreate.bind(this);
+    this.handleChangeUsers = this.handleChangeUsers.bind(this);
+    this.handleSubmitUsers = this.handleSubmitUsers.bind(this);
+    this.onCreateUser = this.onCreateUser.bind(this)
   }
 
   handleChange(event) {
@@ -35,6 +43,27 @@ class LogicWrapper extends React.Component {
     })).then(_ => {this.componentDidMount()})
   }
 
+  handleChangeUsers(event) {
+    this.setState.user[event.target.name]=event.target.value
+  }
+
+  handleSubmitUsers(event) {
+  event.preventDefault();
+  var newUser = {}
+  newUser["first_name"]=this.state.user.firstName
+  newUser["last_name"]=this.state.user.lastName
+  this.onCreateUser(newUser)
+  }
+
+  onCreateUser(newUser) {
+    (client({
+    method: 'POST',
+    path: '/api/users',
+    entity: newUser,
+    headers: {'Content-Type': 'application/json'}
+    })).then(response => {console.log(response)})
+  }
+
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
         this.setState({posts: response.entity._embedded.posts});
@@ -42,6 +71,13 @@ class LogicWrapper extends React.Component {
     }
 
   render() {
+    if (this.state.user.lastName=='') {
+    return (
+      <div>
+        <CreateUser value={this.state.value} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
+      </div>
+    )
+    }else {
     return (
     <div>
       <div>
@@ -53,6 +89,7 @@ class LogicWrapper extends React.Component {
     </div>
 
     )
+  }
   }
 }
 

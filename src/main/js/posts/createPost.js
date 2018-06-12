@@ -1,5 +1,4 @@
 import React from 'react';
-const client = require('../client');
 
 class CreatePost extends React.Component {
     constructor(props) {
