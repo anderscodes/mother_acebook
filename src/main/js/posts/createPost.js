@@ -1,7 +1,7 @@
 import React from 'react';
 const client = require('../client');
 
-class CreateDialog extends React.Component {
+class CreatePost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -16,10 +16,11 @@ class CreateDialog extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        // event.preventDefault();
         var newPost = {}
         newPost["content"] = this.state.value
         this.onCreate(newPost)
+        window.location = "#"
 
     }
 
@@ -47,4 +48,4 @@ class CreateDialog extends React.Component {
     }
 }
 
-export default CreateDialog
+export default CreatePost

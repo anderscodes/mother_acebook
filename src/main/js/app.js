@@ -1,5 +1,5 @@
 import PostsBuilder from "./posts/postsBuilder";
-import CreateDialog from "./create/createDialog";
+import CreatePost from "./posts/createPost";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -13,11 +13,12 @@ class App extends React.Component {
     return (
         <div>
             <div>
-                <PostsBuilder />
+                <CreatePost />
             </div>
             <div>
-                <CreateDialog />
+                <PostsBuilder />
             </div>
+
 
         </div>
     )
