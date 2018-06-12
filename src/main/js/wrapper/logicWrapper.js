@@ -1,7 +1,8 @@
 import React from 'react';
 import Posts from '../posts/posts';
-const client = require('../client');
 import CreatePost from  '../posts/createPost';
+
+const client = require('../client');
 
 class LogicWrapper extends React.Component {
   constructor(props) {
