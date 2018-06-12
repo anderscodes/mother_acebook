@@ -4,9 +4,9 @@ const Post = (props) => {
 	return (
 		<div className='post-main'>
 			<div className='post-content'>
-				{props.post.content}
-				{props.post.createdAt}
-				{props.post.user_id}
+				<p>User: {props.post.user_id}</p>
+        <p>Date created: {props.post.createdAt}</p>
+        <p>Post content: {props.post.content}</p>
 			</div>
 		</div>
 	)
