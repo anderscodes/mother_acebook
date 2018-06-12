@@ -1,13 +1,26 @@
+import PostsBuilder from "./posts/postsBuilder";
+import CreatePost from "./posts/createPost";
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-import PostsBuilder from './posts/postsBuilder'
+
+
 
 class App extends React.Component {
 
   render() {
     return (
-      <PostsBuilder />
+        <div>
+            <div>
+                <CreatePost />
+            </div>
+            <div>
+                <PostsBuilder />
+            </div>
+
+
+        </div>
     )
   }
 }

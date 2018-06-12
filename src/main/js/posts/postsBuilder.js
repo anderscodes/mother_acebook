@@ -4,7 +4,7 @@ const client = require('../client');
 
 class PostsBuilder extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {posts: []};
   }
 
