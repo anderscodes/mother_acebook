@@ -35,8 +35,9 @@ public class Post {
 
     private Post() {}
 
-    public Post(String content) {
+    public Post(String content, User user) {
         this.content = content;
+        this.user = user;
     }
 
     public Date getCreatedAt() {
@@ -69,4 +70,4 @@ public class Post {
     public void setUser(User user) {
       this.user = user;
     }
-  }
+}

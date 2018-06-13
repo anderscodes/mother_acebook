@@ -34,7 +34,11 @@ class LogicWrapper extends React.Component {
     event.preventDefault();
     var newPost = {}
     newPost["content"] = this.state.value
+    let id = this.state.currentUser._links.self.href.split('/').pop()
+    newPost["user"] = this.state.currentUser
+    console.log(newPost)
     this.onCreate(newPost)
+    this.setState({value: ''})
 
   }
 
@@ -74,6 +78,7 @@ class LogicWrapper extends React.Component {
     entity: newUser,
     headers: {'Content-Type': 'application/json'}
     })).then(response => {
+      console.log(response)
     this.setState({currentUser: response.entity})
     })
     }
