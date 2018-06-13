@@ -75,9 +75,6 @@ class LogicWrapper extends React.Component {
     headers: {'Content-Type': 'application/json'}
     })).then(response => {
     this.setState({currentUser: response.entity})
-    //console.log("currentUser", this.state.currentUser)
-    //console.log("response", response)
-    //console.log("response user", this.setState({currentUser: response.entity}))
     })
     }
 
