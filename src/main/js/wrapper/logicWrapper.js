@@ -12,7 +12,8 @@ class LogicWrapper extends React.Component {
       value: '',
       user: {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        isComplete: false
       }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -44,19 +45,29 @@ class LogicWrapper extends React.Component {
   }
 
   handleChangeUsers(event) {
-    let userState = this.state.user
-    let userSignupForm = { userState }
-    userSignupForm[event.target.name]=event.target.value
-    this.setState({userSignupForm})
-
+      let user = Object.assign({}, this.state.user)
+      user[event.target.name]=event.target.value
+      this.setState({user})
+      console.log("user", this.state.user)
+//    let userState = this.state.user
+//    console.log("user state", userState)
+//    let userSignupForm = { userState }
+//    userSignupForm[event.target.name]=event.target.value
+//    console.log("user sign up form", userSignupForm)
+//    this.setState({userSignupForm})
+//    console.log("user state two", userState)
+//    console.log("user sign up two", userSignupForm)
   }
 
   handleSubmitUsers(event) {
-  event.preventDefault();
-  var newUser = {}
-  newUser["first_name"]=this.state.user.firstName
-  newUser["last_name"]=this.state.user.lastName
-  this.onCreateUser(newUser)
+    event.preventDefault();
+    var newUser = {}
+    newUser["first_name"]=this.state.user.firstName
+    newUser["last_name"]=this.state.user.lastName
+    this.onCreateUser(newUser)
+    let user = Object.assign({}, this.state.user)
+    user.isComplete = true
+    this.setState({user})
   }
 
   onCreateUser(newUser) {
@@ -75,7 +86,7 @@ class LogicWrapper extends React.Component {
     }
 
   render() {
-    if (this.state.user.lastName=='') {
+    if (this.state.user.isComplete==false) {
     return (
       <div>
         <CreateUser value={this.state.value} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
