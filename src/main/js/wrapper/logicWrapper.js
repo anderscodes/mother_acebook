@@ -60,6 +60,9 @@ class LogicWrapper extends React.Component {
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)
+    let userCreated = this.state.user
+    userCreated.isComplete = true
+    this.setState({userCreated})
   }
 
   onCreateUser(newUser) {
