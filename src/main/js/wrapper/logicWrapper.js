@@ -2,6 +2,7 @@ import React from 'react';
 import Posts from '../posts/posts';
 import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
+import Welcome from '../commonviews/welcome';
 const client = require('../client');
 
 class LogicWrapper extends React.Component {
@@ -14,7 +15,8 @@ class LogicWrapper extends React.Component {
         firstName: '',
         lastName: '',
         isComplete: false
-      }
+      },
+      currentUser: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,8 +73,13 @@ class LogicWrapper extends React.Component {
     path: '/api/users',
     entity: newUser,
     headers: {'Content-Type': 'application/json'}
-    })).then(response => {console.log(response)})
-  }
+    })).then(response => {
+    this.setState({currentUser: response.entity})
+    //console.log("currentUser", this.state.currentUser)
+    //console.log("response", response)
+    //console.log("response user", this.setState({currentUser: response.entity}))
+    })
+    }
 
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
@@ -90,6 +97,9 @@ class LogicWrapper extends React.Component {
     }else {
     return (
     <div>
+      <div>
+        <Welcome value={this.state.currentUser} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+      </div>
       <div>
         <CreatePost value={this.state.value} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
