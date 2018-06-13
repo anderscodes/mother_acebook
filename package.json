@@ -21,7 +21,8 @@
   },
   "scripts": {
     "start": "npm run webpack",
-    "webpack": "webpack -d --watch"
+    "webpack": "webpack -d --watch",
+    "postinstall": "webpack"
   },
   "author": "dearshrewdwit",
   "license": "ISC"

@@ -3,3 +3,11 @@ language: java
 jdk: oraclejdk8
 script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script: mvn test -B
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: bc9a2ca1-4e54-413c-b5de-04e7fc171a71
+  app: motherbook
+  on:
+    repo: anderscodes/mother_acebook
