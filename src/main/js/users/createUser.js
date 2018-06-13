@@ -13,12 +13,12 @@ class CreateUser extends React.Component {
 
            <label>
             First Name
-            <input type="text" name="firstName" value={this.props.value} onChange={this.props.handleChangeUsers} />
+            <input type="text" name="firstName" value={this.props.value.firstName} onChange={this.props.handleChangeUsers} />
           </label>
 
           <label>
             Last Name
-            <input type="text" name="lastName" value={this.props.value} onChange={this.props.handleChangeUsers} />
+            <input type="text" name="lastName" value={this.props.value.lastName} onChange={this.props.handleChangeUsers} />
           </label>
 
           <input type="submit" value="Submit" />

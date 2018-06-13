@@ -1,8 +1,8 @@
 import React from 'react';
 import Posts from '../posts/posts';
-const client = require('../client');
 import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
+const client = require('../client');
 
 class LogicWrapper extends React.Component {
   constructor(props) {
@@ -45,29 +45,32 @@ class LogicWrapper extends React.Component {
   }
 
   handleChangeUsers(event) {
-      let user = Object.assign({}, this.state.user)
-      user[event.target.name]=event.target.value
-      this.setState({user})
-      console.log("user", this.state.user)
-//    let userState = this.state.user
-//    console.log("user state", userState)
-//    let userSignupForm = { userState }
-//    userSignupForm[event.target.name]=event.target.value
-//    console.log("user sign up form", userSignupForm)
-//    this.setState({userSignupForm})
-//    console.log("user state two", userState)
-//    console.log("user sign up two", userSignupForm)
+    console.log("this.state.user.firstName", this.state.user.firstName)
+    console.log("this.state.user.lastName", this.state.user.lastName)
+    console.log("event.target.value", event.target.value)
+    console.log("event.target.name", event.target.name)
+    let userField = this.state.user
+    if (event.target.name == "firstName") {
+      userField.firstName = event.target.value
+    } else {
+      userField.lastName = event.target.value
+    }
+
+    this.setState({userField})
+
+
   }
 
   handleSubmitUsers(event) {
     event.preventDefault();
     var newUser = {}
-    newUser["first_name"]=this.state.user.firstName
-    newUser["last_name"]=this.state.user.lastName
+    newUser["firstName"]=this.state.user.firstName
+    newUser["lastName"]=this.state.user.lastName
+    console.log("USER", newUser)
     this.onCreateUser(newUser)
-    let user = Object.assign({}, this.state.user)
-    user.isComplete = true
-    this.setState({user})
+    // let user = Object.assign({}, this.state.user)
+    // user.isComplete = true
+    // this.setState({user})
   }
 
   onCreateUser(newUser) {
@@ -89,7 +92,7 @@ class LogicWrapper extends React.Component {
     if (this.state.user.isComplete==false) {
     return (
       <div>
-        <CreateUser value={this.state.value} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
+        <CreateUser value={this.state.user} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
       </div>
     )
     }else {
