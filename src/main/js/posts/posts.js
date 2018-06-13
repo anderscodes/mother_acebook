@@ -23,7 +23,7 @@ class Posts extends React.Component {
   getPosts() {
     return this.props.posts.map(post =>
 			<Post key={post._links.self.href} post={post}/>
-		);
+		).reverse();
   }
 }
 

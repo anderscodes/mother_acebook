@@ -1,26 +1,16 @@
-import PostsBuilder from "./posts/postsBuilder";
-import CreatePost from "./posts/createPost";
+import LogicWrapper from "./wrapper/logicWrapper";
 
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-
+//I like sci-fi
 
 
 class App extends React.Component {
 
   render() {
     return (
-        <div>
-            <div>
-                <CreatePost />
-            </div>
-            <div>
-                <PostsBuilder />
-            </div>
-
-
-        </div>
+    <LogicWrapper />
     )
   }
 }
