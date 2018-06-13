@@ -44,7 +44,11 @@ class LogicWrapper extends React.Component {
   }
 
   handleChangeUsers(event) {
-    this.setState.user[event.target.name]=event.target.value
+    let userState = this.state.user
+    let userSignupForm = { userState }
+    userSignupForm[event.target.name]=event.target.value
+    this.setState({userSignupForm})
+
   }
 
   handleSubmitUsers(event) {

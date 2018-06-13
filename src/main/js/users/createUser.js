@@ -21,6 +21,8 @@ class CreateUser extends React.Component {
             <input type="text" name="lastName" value={this.props.value} onChange={this.props.handleChangeUsers} />
           </label>
 
+          <input type="submit" value="Submit" />
+
         </label>
     </form>
     )
