@@ -45,20 +45,13 @@ class LogicWrapper extends React.Component {
   }
 
   handleChangeUsers(event) {
-    console.log("this.state.user.firstName", this.state.user.firstName)
-    console.log("this.state.user.lastName", this.state.user.lastName)
-    console.log("event.target.value", event.target.value)
-    console.log("event.target.name", event.target.name)
     let userField = this.state.user
     if (event.target.name == "firstName") {
       userField.firstName = event.target.value
     } else {
       userField.lastName = event.target.value
     }
-
     this.setState({userField})
-
-
   }
 
   handleSubmitUsers(event) {
@@ -66,7 +59,6 @@ class LogicWrapper extends React.Component {
     var newUser = {}
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
-    console.log("USER", newUser)
     this.onCreateUser(newUser)
     // let user = Object.assign({}, this.state.user)
     // user.isComplete = true
