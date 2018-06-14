@@ -11,6 +11,11 @@ class CreateUser extends React.Component {
         <label>
           Sign Up:
 
+          <label>
+            Username (must be unique)
+            <input type="text" name="userName" value={this.props.value.userName} onChange={this.props.handleChangeUsers} />
+          </label>
+
            <label>
             First Name
             <input type="text" name="firstName" value={this.props.value.firstName} onChange={this.props.handleChangeUsers} />

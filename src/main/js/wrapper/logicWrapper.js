@@ -3,6 +3,8 @@ import Posts from '../posts/posts';
 import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
 import Welcome from '../commonviews/welcome';
+import HomePage from '../commonviews/homePage';
+import LoginUser from '../users/loginUser';
 const client = require('../client');
 
 class LogicWrapper extends React.Component {
@@ -12,18 +14,26 @@ class LogicWrapper extends React.Component {
       posts: [],
       value: '',
       user: {
+        userName:'',
         firstName: '',
         lastName: '',
         isComplete: false
       },
-      currentUser: []
+      currentUser: [],
+      visit: 'newVisit',
+      users: []
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onCreate = this.onCreate.bind(this);
-    this.handleChangeUsers = this.handleChangeUsers.bind(this);
-    this.handleSubmitUsers = this.handleSubmitUsers.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onCreate = this.onCreate.bind(this)
+    this.handleChangeUsers = this.handleChangeUsers.bind(this)
+    this.handleSubmitUsers = this.handleSubmitUsers.bind(this)
     this.onCreateUser = this.onCreateUser.bind(this)
+    this.loadSignUp = this.loadSignUp.bind(this)
+    this.loadLogin = this.loadLogin.bind(this)
+    this.logInUser = this.logInUser.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
+    this.processUserName = this.processUserName.bind(this)
   }
 
   handleChange(event) {
@@ -51,8 +61,10 @@ class LogicWrapper extends React.Component {
     let userField = this.state.user
     if (event.target.name == "firstName") {
       userField.firstName = event.target.value
-    } else {
+    } else if (event.target.name == "lastName") {
       userField.lastName = event.target.value
+    } else {
+      userField.userName = event.target.value
     }
     this.setState({userField})
   }
@@ -60,12 +72,11 @@ class LogicWrapper extends React.Component {
   handleSubmitUsers(event) {
     event.preventDefault();
     var newUser = {}
+    newUser["userName"]=this.state.user.userName
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)
-    let userCreated = this.state.user
-    userCreated.isComplete = true
-    this.setState({userCreated})
+    this.setState({visit: 'posts'})
   }
 
   onCreateUser(newUser) {
@@ -79,22 +90,75 @@ class LogicWrapper extends React.Component {
     })
     }
 
+    loadSignUp() {
+       this.setState({visit: 'signUp'});
+    }
+
+    loadLogin() {
+      this.setState({visit: 'login'});
+    }
+
+    logInUser(event) {
+    event.preventDefault();
+    client({
+        method: 'GET',
+        path: '/api/users'
+        }).then(response => {
+        this.setState({users: response.entity._embedded.users})
+        this.processUserName()
+        })
+    }
+
+    processUserName() {
+      var self = this
+      var randomUserName = this.state.user.userName
+        this.state.users.forEach(function(element){
+          if (element.userName == randomUserName) {
+            self.setState({currentUser: element})
+            self.setState({visit: 'posts'})
+            return
+          }
+          // else {
+          //   return self.setState({visit: 'signUp'})
+          // }
+        })
+
+      console.log("this is the state.currentUser", this.state.currentUser)
+      }
+
+    handleLogin(event) {
+      let userField = this.state.user
+      userField.userName = event.target.value
+      this.setState({userField})
+    }
+
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
         this.setState({posts: response.entity._embedded.posts});
       });
     }
 
-
-
   render() {
-    if (this.state.user.isComplete==false) {
+    if (this.state.visit=='newVisit') {
+      return (
+      <div>
+        <HomePage loadSignUp={this.loadSignUp} loadLogin={this.loadLogin}/>
+      </div>
+      )
+    } else if (this.state.visit=='signUp') {
     return (
       <div>
         <CreateUser value={this.state.user} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
       </div>
     )
-    }else {
+    } else if (this.state.visit=='login') {
+      return(
+      <div>
+        <LoginUser value={this.state.user} logInUser={this.logInUser} handleLogin={this.handleLogin} />
+      </div>
+          )
+    }
+    else if (this.state.visit=='posts') {
     return (
     <div>
       <div>
