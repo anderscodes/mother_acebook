@@ -24,10 +24,8 @@ class Posts extends React.Component {
 
   getPosts() {
     return this.props.posts.map(post =>
-			<Post key={post._links.self.href} post={post} userAddress={post._links.user.href} getUser={this.props.getUsers}/>
+			<Post key={post._links.self.href} post={post} />
 		).reverse();
-
-    //getUser={this.props.getUser(post._links.user.href)
   }
 }
 
