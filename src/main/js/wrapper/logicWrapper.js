@@ -32,6 +32,8 @@ class LogicWrapper extends React.Component {
     this.loadSignUp = this.loadSignUp.bind(this)
     this.loadLogin = this.loadLogin.bind(this)
     this.logInUser = this.logInUser.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
+    this.processUserName = this.processUserName.bind(this)
   }
 
   handleChange(event) {
@@ -96,13 +98,32 @@ class LogicWrapper extends React.Component {
       this.setState({visit: 'login'});
     }
 
-    logInUser() {
-    (client({
+    logInUser(event) {
+    event.preventDefault();
+    client({
         method: 'GET',
         path: '/api/users'
-        })).then(response => {
-        this.setState({users: response.entity._embedded.users});
-        });
+        }).then(response => {
+        this.setState({users: response.entity._embedded.users})
+        this.processUserName()
+        })
+    }
+
+    processUserName() {
+      var self = this
+      var randomUserName = this.state.user.userName
+        this.state.users.forEach(function(element){
+          if (element.userName == randomUserName) {
+            return self.setState({currentUser: element})
+          }})
+
+      console.log("this is the state.currentUser", this.state.currentUser)
+      }
+
+    handleLogin(event) {
+      let userField = this.state.user
+      userField.userName = event.target.value
+      this.setState({userField})
     }
 
     componentDidMount() {
@@ -125,9 +146,11 @@ class LogicWrapper extends React.Component {
       </div>
     )
     } else if (this.state.visit=='login') {
+      return(
       <div>
-      <LoginUser value={this.state.user} handleLogin={this.handleLogin}/>
+        <LoginUser value={this.state.user} logInUser={this.logInUser} handleLogin={this.handleLogin} />
       </div>
+          )
     }
     else if (this.state.visit=='posts') {
     return (
