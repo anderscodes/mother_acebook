@@ -9,7 +9,6 @@ class Post extends React.Component {
     }
   }
 
-
   componentDidMount() {
     client({
       method: 'GET',

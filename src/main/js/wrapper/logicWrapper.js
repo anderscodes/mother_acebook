@@ -3,6 +3,7 @@ import Posts from '../posts/posts';
 import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
 import Welcome from '../commonviews/welcome';
+import HomePage from '../commonviews/homePage';
 const client = require('../client');
 
 class LogicWrapper extends React.Component {
@@ -17,14 +18,17 @@ class LogicWrapper extends React.Component {
         lastName: '',
         isComplete: false
       },
-      currentUser: []
+      currentUser: [],
+      visit: 'newVisit'
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.onCreate = this.onCreate.bind(this);
-    this.handleChangeUsers = this.handleChangeUsers.bind(this);
-    this.handleSubmitUsers = this.handleSubmitUsers.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onCreate = this.onCreate.bind(this)
+    this.handleChangeUsers = this.handleChangeUsers.bind(this)
+    this.handleSubmitUsers = this.handleSubmitUsers.bind(this)
     this.onCreateUser = this.onCreateUser.bind(this)
+    this.loadSignUp = this.loadSignUp.bind(this)
+    this.loadLogin = this.loadLogin.bind(this)
   }
 
   handleChange(event) {
@@ -67,9 +71,9 @@ class LogicWrapper extends React.Component {
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)
-    let userCreated = this.state.user
-    userCreated.isComplete = true
-    this.setState({userCreated})
+//    let userCreated = this.state.user
+//    userCreated.isComplete = true
+    this.setState({visit: 'posts'})
   }
 
   onCreateUser(newUser) {
@@ -83,22 +87,39 @@ class LogicWrapper extends React.Component {
     })
     }
 
+    loadSignUp() {
+       this.setState({visit: 'signUp'});
+    }
+
+    loadLogin() {
+      this.setState({visit: 'login'});
+    }
+
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
         this.setState({posts: response.entity._embedded.posts});
       });
     }
 
-
-
   render() {
-    if (this.state.user.isComplete==false) {
+    if (this.state.visit=='newVisit') {
+      return (
+      <div>
+        <HomePage loadSignUp={this.loadSignUp} loadLogin={this.loadLogin}/>
+      </div>
+      )
+    } else if (this.state.visit=='signUp') {
     return (
       <div>
         <CreateUser value={this.state.user} handleChangeUsers={this.handleChangeUsers} handleSubmitUsers={this.handleSubmitUsers}/>
       </div>
     )
-    }else {
+    } else if (this.state.visit=='login') {
+      <div>
+      <p> user will login here </p>
+      </div>
+    }
+    else if (this.state.visit=='posts') {
     return (
     <div>
       <div>
