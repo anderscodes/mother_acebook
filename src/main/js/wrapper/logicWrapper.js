@@ -60,6 +60,7 @@ class LogicWrapper extends React.Component {
   handleSubmitUsers(event) {
     event.preventDefault();
     var newUser = {}
+    new
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)

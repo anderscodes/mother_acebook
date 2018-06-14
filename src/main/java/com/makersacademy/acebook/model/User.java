@@ -13,6 +13,9 @@ import java.util.List;
 public class User {
   private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
+  @Column(name="userName", unique = true)
+  private String userName
+
   @Column(name = "firstName")
   private String firstName;
 
@@ -21,7 +24,8 @@ public class User {
 
   public User() {};
 
-  public User(String firstName, String lastName) {
+  public User(String userName, String firstName, String lastName) {
+    this.userName = userName;
     this.firstName = firstName;
     this.lastName = lastName;
   }
