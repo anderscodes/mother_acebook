@@ -114,8 +114,14 @@ class LogicWrapper extends React.Component {
       var randomUserName = this.state.user.userName
         this.state.users.forEach(function(element){
           if (element.userName == randomUserName) {
-            return self.setState({currentUser: element})
-          }})
+            self.setState({currentUser: element})
+            self.setState({visit: 'posts'})
+            return
+          }
+          // else {
+          //   return self.setState({visit: 'signUp'})
+          // }
+        })
 
       console.log("this is the state.currentUser", this.state.currentUser)
       }
