@@ -71,8 +71,6 @@ class LogicWrapper extends React.Component {
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)
-//    let userCreated = this.state.user
-//    userCreated.isComplete = true
     this.setState({visit: 'posts'})
   }
 
@@ -116,7 +114,7 @@ class LogicWrapper extends React.Component {
     )
     } else if (this.state.visit=='login') {
       <div>
-      <p> user will login here </p>
+      <LoginUser value={this.state}/>
       </div>
     }
     else if (this.state.visit=='posts') {
