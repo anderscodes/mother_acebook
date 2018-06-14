@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-plugin-rewire": "^1.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router": "^4.3.1",
@@ -14,16 +15,21 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.1.0"
   },
   "scripts": {
     "start": "npm run webpack",
     "webpack": "webpack -d --watch",
-    "postinstall": "webpack"
+    "postinstall": "webpack",
+    "test": "jest"
   },
   "author": "dearshrewdwit",
   "license": "ISC"
