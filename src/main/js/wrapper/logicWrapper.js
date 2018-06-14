@@ -4,6 +4,7 @@ import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
 import Welcome from '../commonviews/welcome';
 import HomePage from '../commonviews/homePage';
+import LoginUser from '../users/loginUser';
 const client = require('../client');
 
 class LogicWrapper extends React.Component {
@@ -19,7 +20,8 @@ class LogicWrapper extends React.Component {
         isComplete: false
       },
       currentUser: [],
-      visit: 'newVisit'
+      visit: 'newVisit',
+      users: []
     };
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,6 +31,7 @@ class LogicWrapper extends React.Component {
     this.onCreateUser = this.onCreateUser.bind(this)
     this.loadSignUp = this.loadSignUp.bind(this)
     this.loadLogin = this.loadLogin.bind(this)
+    this.logInUser = this.logInUser.bind(this)
   }
 
   handleChange(event) {
@@ -91,6 +94,15 @@ class LogicWrapper extends React.Component {
 
     loadLogin() {
       this.setState({visit: 'login'});
+    }
+
+    logInUser() {
+    (client({
+        method: 'GET',
+        path: '/api/users'
+        })).then(response => {
+        this.setState({users: response.entity._embedded.users});
+        });
     }
 
     componentDidMount() {

@@ -1,4 +1,4 @@
-import React fro 'react';
+import React from 'react';
 
 class LoginUser extends React.Component {
   constructor(props) {
