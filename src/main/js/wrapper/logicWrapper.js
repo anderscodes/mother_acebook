@@ -2,6 +2,7 @@ import React from 'react';
 import Posts from '../posts/posts';
 import CreatePost from  '../posts/createPost';
 import CreateUser from '../users/createUser';
+import Welcome from '../commonviews/welcome';
 const client = require('../client');
 
 class LogicWrapper extends React.Component {
@@ -14,7 +15,8 @@ class LogicWrapper extends React.Component {
         firstName: '',
         lastName: '',
         isComplete: false
-      }
+      },
+      currentUser: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +24,7 @@ class LogicWrapper extends React.Component {
     this.handleChangeUsers = this.handleChangeUsers.bind(this);
     this.handleSubmitUsers = this.handleSubmitUsers.bind(this);
     this.onCreateUser = this.onCreateUser.bind(this)
+    this.getUserName = this.getUserName.bind(this)
   }
 
   handleChange(event) {
@@ -32,10 +35,11 @@ class LogicWrapper extends React.Component {
     event.preventDefault();
     var newPost = {}
     newPost["content"] = this.state.value
+    newPost["user"] = this.state.currentUser._links.self.href
     this.onCreate(newPost)
+    this.setState({value: ''})
 
   }
-
   onCreate(newPost) {
     (client({method: 'POST',
       path: '/api/posts',
@@ -71,16 +75,30 @@ class LogicWrapper extends React.Component {
     path: '/api/users',
     entity: newUser,
     headers: {'Content-Type': 'application/json'}
-    })).then(response => {console.log(response)})
-  }
+    })).then(response => {
+    this.setState({currentUser: response.entity})
+    })
+    }
 
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
         this.setState({posts: response.entity._embedded.posts});
+        console.log("POSTS", response.entity._embedded.posts)
       });
     }
 
+    getUserName(path) {
+      client({
+        method: 'GET',
+        path: path
+      }).then(response => {
+        console.log(`Name is ${response.entity.firstName}`)
+        return response.entity.firstName
+      })
+    }
+
   render() {
+    console.log(this.state.posts)
     if (this.state.user.isComplete==false) {
     return (
       <div>
@@ -91,10 +109,13 @@ class LogicWrapper extends React.Component {
     return (
     <div>
       <div>
+        <Welcome value={this.state.currentUser} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+      </div>
+      <div>
         <CreatePost value={this.state.value} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
       <div>
-        <Posts posts={this.state.posts}/>
+        <Posts posts={this.state.posts} getUsers={this.getUserName}/>
       </div>
     </div>
 

@@ -1,9 +1,11 @@
 package com.makersacademy.acebook.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.makersacademy.acebook.repository.UserRepository;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,6 +33,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     private Post() {}
@@ -69,4 +72,4 @@ public class Post {
     public void setUser(User user) {
       this.user = user;
     }
-  }
+}
