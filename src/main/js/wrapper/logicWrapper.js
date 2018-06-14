@@ -12,6 +12,7 @@ class LogicWrapper extends React.Component {
       posts: [],
       value: '',
       user: {
+        userName:'',
         firstName: '',
         lastName: '',
         isComplete: false
@@ -51,8 +52,10 @@ class LogicWrapper extends React.Component {
     let userField = this.state.user
     if (event.target.name == "firstName") {
       userField.firstName = event.target.value
-    } else {
+    } else if (event.target.name == "lastName") {
       userField.lastName = event.target.value
+    } else {
+      userField.userName = event.target.value
     }
     this.setState({userField})
   }
@@ -60,7 +63,7 @@ class LogicWrapper extends React.Component {
   handleSubmitUsers(event) {
     event.preventDefault();
     var newUser = {}
-    new
+    newUser["userName"]=this.state.user.userName
     newUser["firstName"]=this.state.user.firstName
     newUser["lastName"]=this.state.user.lastName
     this.onCreateUser(newUser)

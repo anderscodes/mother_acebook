@@ -15,7 +15,7 @@ class Post extends React.Component {
       method: 'GET',
       path: this.props.post._links.user.href
     }).then(response => {
-      this.setState({user: response.entity.firstName})
+      this.setState({user: response.entity.userName})
     })
   }
 
