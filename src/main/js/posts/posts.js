@@ -14,7 +14,9 @@ class Posts extends React.Component {
           Posts
         </h1>
   			<div className='posts-items'>
-  				{this.getPosts()}
+  				{
+  				  this.getPosts()
+  				}
   			</div>
       </article>
 		)
@@ -22,8 +24,10 @@ class Posts extends React.Component {
 
   getPosts() {
     return this.props.posts.map(post =>
-			<Post key={post._links.self.href} post={post}/>
+			<Post key={post._links.self.href} post={post} userAddress={post._links.user.href} getUser={this.props.getUsers}/>
 		).reverse();
+
+    //getUser={this.props.getUser(post._links.user.href)
   }
 }
 

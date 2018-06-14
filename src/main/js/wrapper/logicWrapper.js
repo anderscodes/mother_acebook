@@ -24,6 +24,7 @@ class LogicWrapper extends React.Component {
     this.handleChangeUsers = this.handleChangeUsers.bind(this);
     this.handleSubmitUsers = this.handleSubmitUsers.bind(this);
     this.onCreateUser = this.onCreateUser.bind(this)
+    this.getUserName = this.getUserName.bind(this)
   }
 
   handleChange(event) {
@@ -34,14 +35,11 @@ class LogicWrapper extends React.Component {
     event.preventDefault();
     var newPost = {}
     newPost["content"] = this.state.value
-    let id = this.state.currentUser._links.self.href.split('/').pop()
-    newPost["user"] = this.state.currentUser
-    console.log(newPost)
+    newPost["user"] = this.state.currentUser._links.self.href
     this.onCreate(newPost)
     this.setState({value: ''})
 
   }
-
   onCreate(newPost) {
     (client({method: 'POST',
       path: '/api/posts',
@@ -78,7 +76,6 @@ class LogicWrapper extends React.Component {
     entity: newUser,
     headers: {'Content-Type': 'application/json'}
     })).then(response => {
-      console.log(response)
     this.setState({currentUser: response.entity})
     })
     }
@@ -86,10 +83,22 @@ class LogicWrapper extends React.Component {
     componentDidMount() {
       client({method: 'GET', path: '/api/posts'}).then(response => {
         this.setState({posts: response.entity._embedded.posts});
+        console.log("POSTS", response.entity._embedded.posts)
       });
     }
 
+    getUserName(path) {
+      client({
+        method: 'GET',
+        path: path
+      }).then(response => {
+        console.log(`Name is ${response.entity.firstName}`)
+        return response.entity.firstName
+      })
+    }
+
   render() {
+    console.log(this.state.posts)
     if (this.state.user.isComplete==false) {
     return (
       <div>
@@ -106,7 +115,7 @@ class LogicWrapper extends React.Component {
         <CreatePost value={this.state.value} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
       <div>
-        <Posts posts={this.state.posts}/>
+        <Posts posts={this.state.posts} getUsers={this.getUserName}/>
       </div>
     </div>
 
