@@ -126,7 +126,7 @@ class LogicWrapper extends React.Component {
     )
     } else if (this.state.visit=='login') {
       <div>
-      <LoginUser value={this.state}/>
+      <LoginUser value={this.state.user} handleLogin={this.handleLogin}/>
       </div>
     }
     else if (this.state.visit=='posts') {
