@@ -118,9 +118,9 @@ class LogicWrapper extends React.Component {
             self.setState({visit: 'posts'})
             return
           }
-          // else {
-          //   return self.setState({visit: 'signUp'})
-          // }
+          else {
+            return self.setState({visit: 'signUp'})
+          }
         })
 
       console.log("this is the state.currentUser", this.state.currentUser)

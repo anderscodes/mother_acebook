@@ -1,5 +1,6 @@
 import React from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme from 'enzyme';
+import {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import Post from '../posts/post';
@@ -9,11 +10,14 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe('<Post />', () => {
 
-    it('should display post with content and created at', () => {
-    const post = shallow(
-    <Post post={{content: 'Test', createdAt: '2018-08-19'}} /> );
+  const post = shallow(
+      <Post post={{content: 'Test', createdAt: '2018-08-19'}} />, {disableLifecycleMethods: true});
 
-    expect(post.text()).toEqual('Date created: 2018-08-19Post content: Test')
+
+    it('should display post with content and created at', () => {
+
+
+    expect(post.text()).toEqual('User: Date created: 2018-08-19Post content: Test')
 
     });
 });
