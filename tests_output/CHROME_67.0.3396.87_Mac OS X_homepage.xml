@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="homepage"
+    errors="0" failures="0" hostname="" id="" package="homepage" skipped="0"
+    tests="1" time="4.774" timestamp="Fri, 15 Jun 2018 10:39:31 GMT">
+  
+    <testcase name="visit homepage and see home buttons" classname="homepage" time="4.774" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>
