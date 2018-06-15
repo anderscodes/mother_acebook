@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-const client = require('../client');
+
 
 class Post extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class Post extends React.Component {
 
 
   componentDidMount() {
+    const client = require('../client');
     client({
       method: 'GET',
       path: this.props.post._links.user.href
