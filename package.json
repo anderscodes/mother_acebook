@@ -6,8 +6,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-rewire": "^1.1.0",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.4.1",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.4.1",
     "react-router": "^4.3.1",
     "rest": "^2.0.0",
     "webpack": "^4.10.2",

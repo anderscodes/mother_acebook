@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 const client = require('../client');
 
 class Post extends React.Component {
