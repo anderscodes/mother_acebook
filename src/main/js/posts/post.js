@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-
-=======
 import { Button } from 'react-bootstrap';
->>>>>>> css_1
+
 
 
 class Post extends React.Component {
