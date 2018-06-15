@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 
 class CreateUser extends React.Component {
   constructor(props) {
@@ -34,4 +35,4 @@ class CreateUser extends React.Component {
   }
 }
 
-export default CreateUser
+export default CreateUser;
