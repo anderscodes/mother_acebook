@@ -15,7 +15,7 @@ module.exports = {
       .assert.containsText('h1', 'Welcome,')
       .setValue('#app > div > div:nth-child(2) > form > label > input[type="text"]', 'I love Bacon')
       .pause(1000)
-      .assert.containsText('#app > div > div:nth-child(3) > article > div > div:nth-child(1) > div > p:nth-child(3)', 'Post content: I love bacon"')
+      .assert.containsText('#app > div > div:nth-child(3) > article > div > div:nth-child(1) > div > p:nth-child(3)', 'Post content: I love bacon')
       .end()
   }
 }
