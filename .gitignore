@@ -3,4 +3,5 @@
 /node_modules
 dependency-reduced-pom.xml
 *.iml
+/static/built
 tests_output
