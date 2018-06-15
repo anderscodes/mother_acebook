@@ -11,7 +11,8 @@ module.exports = {
       .assert.containsText('label', 'Login:Username')
       .setValue('#app > div > form > label > label > input[type="text"]', 'EllieK')
       .click('#app > div > form > label > input[type="submit"]')
-//      .assert.containsText('h1', 'Welcome,')
+      .pause(1000)
+      .assert.containsText('h1', 'Welcome,')
       .end()
   }
 }
