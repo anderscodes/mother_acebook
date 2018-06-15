@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="0"
-            tests="0">
+            failures="1"
+            tests="1">
 
   <testsuite name="userPosts"
-    errors="0" failures="0" hostname="" id="" package="userPosts" skipped="0"
-    tests="0" time="0.000" timestamp="Fri, 15 Jun 2018 12:04:57 GMT">
+    errors="0" failures="1" hostname="" id="" package="userPosts" skipped="0"
+    tests="1" time="6.038" timestamp="Fri, 15 Jun 2018 12:16:29 GMT">
+  
+    <testcase name="signed up user posts" classname="userPosts" time="6.038" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Testing if element &lt;#app &gt; div &gt; div:nth-child(3) &gt; article &gt; div &gt; div:nth-child(1) &gt; div &gt; p:nth-child(3)&gt; contains text: &#34;Post content: I love bacon&#34;&#34;.">    at Object.signed up user posts (/Users/charlymannion/Projects/WeekEight/mother_acebook/src/test/feature/userPosts.js:18:15)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)</failure>
+
+    
+    </testcase>
   
 
   

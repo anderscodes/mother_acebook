@@ -2,6 +2,7 @@ module.exports = {
   'user fills in username on login form' : function (browser) {
     browser
       .url("http://motherbook.herokuapp.com")
+//      .url("http://localhost:8080")
       .waitForElementVisible('h1', 2000)
       .assert.containsText('h1', 'Welcome to Acebook')
       .waitForElementVisible('#app > div > div > div:nth-child(4) > button', 2000)
