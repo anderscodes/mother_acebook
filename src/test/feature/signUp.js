@@ -1,5 +1,5 @@
 module.exports = {
-  'visit homepage and see home buttons' : function (browser) {
+  'user clicks on sign up' : function (browser) {
     browser
       .url("http://motherbook.herokuapp.com")
       .waitForElementVisible('h1', 2000)
