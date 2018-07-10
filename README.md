@@ -17,6 +17,16 @@ Contributors:
 * We worked on tickets in pairs
 * We held daily retros, check-ins and stand-ups, as well as knowledge sharing sessions
 
+### Difficulties Faced
+* Getting up to speed with an entirely new tech stack as a team of novice coders was challenging, as there is an element of the blind leading the blind
+* Because of this, we found we ran out of time to implement all the features we wanted and testing our app fell by the wayside
+* Towards the middle of the two week project, team communication broke down. However, we managed to get this back on track fairly quickly thanks to the XP Values we learn at Makers
+
+### Reflections and Learnings
+* We would have spent less time learning Java before getting stuck in to the project, as we found we needed to know less than we anticipated
+* This project was a steep learning curve, which forced us to consider how to choose a tech stack as a team. It gave us insight in to why dev teams often avoid using a technology for a project that none of them are familiar with
+* Given another week to work on Acebook, we would have added features, made the interface more user friendly, and TDD'd our app more
+
 ### Using the app
 http://motherbook.herokuapp.com/
 
